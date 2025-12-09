@@ -5,12 +5,25 @@ def process_lines(input):
     for rotation in input:
         direction = rotation[0]
         steps = int(rotation[1:])
+
+        # part 1 answer:
+        '''
         if direction == 'R':
-            current_position = (current_position + steps) % 100
+            next_rotation = (current_position + steps) % 100
         elif direction == 'L':
-            current_position = (current_position - steps) % 100
-        if current_position == 0:
+            next_rotation = (current_position - steps) % 100
+        if next_rotation == 0:
             zero_count += 1
+        current_position = next_rotation
+        '''
+
+        # part 2 answer:
+        delta = 1 if direction == 'R' else -1
+        for _ in range(steps):
+            current_position = (current_position + delta) % 100
+            if current_position == 0:
+                zero_count += 1
+        
     return zero_count
 
 
